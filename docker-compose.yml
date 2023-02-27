@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  nodestarter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./src:/home/node/app/src
+    container_name: nodestarter
+    expose:
+      - '3000'
+    ports:
+      - '80:3000'
+    command: npm run dev
+    environment:
+      - ENV_CHECK=local
+      - COPILOT_ENVIRONMENT_NAME=local
+      - COPILOT_APPLICATION_NAME=localapp
+      - COPILOT_SERVICE_NAME=localservice

@@ -1,0 +1,24 @@
+image: assetplus/copilot:latest
+
+services:
+  - docker:19.03.12-dind
+
+variables:
+  AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+  AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+  AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+
+before_script:
+    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID 
+    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+    - aws configure set region $AWS_DEFAULT_REGION 
+
+stages:
+  - build
+
+build:
+  stage: build
+  script:
+    - copilot deploy -e test
+  only:
+    - master

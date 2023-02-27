@@ -1,0 +1,12 @@
+.dockerignore
+node_modules
+npm-debug.log
+Dockerfile
+docker-compose.yml
+.gitlab-ci.yml
+.git
+.gitignore
+prod.env
+package-lock.json
+README.md
+copilot/
